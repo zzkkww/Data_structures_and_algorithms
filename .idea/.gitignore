@@ -7,4 +7,30 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 
+
+*.class
+
+#maven
 target/
+dependency-reduced-pom.xml
+pom.xml.versionsBackup
+.factorypath
+
+out/
+
+# Gradel
+.gradle/
+build/
+
+# IDEA
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
