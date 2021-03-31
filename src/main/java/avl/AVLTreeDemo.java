@@ -9,8 +9,11 @@ package avl;
  **/
 public class AVLTreeDemo {
     public static void main(String[] args) {
-        int[] arr = {4, 3, 6, 5, 7, 8};
+        //左旋数组
+//        int[] arr = {4, 3, 6, 5, 7, 8};
         AVLTree avlTree = new AVLTree();
+        //右旋数组
+        int[] arr={10,12,8,9,7,6};
         for (int i = 0; i < arr.length; i++) {
             avlTree.add(new Node(arr[i]));
         }
@@ -95,6 +98,18 @@ class Node {
     }
 
     /**
+     * 右旋
+     */
+    private void rightRotate(){
+        Node newNode = new Node(value);
+        newNode.right=right;
+        newNode.left=left.right;
+        value=left.value;
+        left=left.left;
+        right=newNode;
+    }
+
+    /**
      * 返回左子树的高度
      *
      * @return
@@ -160,9 +175,32 @@ class Node {
 
         //当添加完一个节点后，如果（右子树的高度-左子树的高度）>1，即要左旋
         if (rightHeight() - leftHeight() > 1) {
+            //需要双旋转的情况  如果它的右子树的左子树高度大于它的右子树的高度
+            if (right!=null &&right.leftHeight()>right.rightHeight()){
+                //先对当前节点的右节点（即右子树）右旋
+                right.rightRotate();
+                //再对当前节点进行左旋转
+                leftRotate();
+            }else {
+                //左旋转
+                leftRotate();
+            }
+            //必须要
+            return;
+        }
 
-            //左旋转
-            leftRotate();
+        //当添加完一个节点后，如果（左子树的高度-右子树的高度）>1，即要右旋旋
+        if (leftHeight() - rightHeight() > 1) {
+            //需要双旋转的情况  如果它的左子树的右子树高度大于它的左子树的高度
+            if (left!=null &&left.rightHeight()>left.leftHeight()){
+                //先对当前节点的左节点（即左子树）左旋
+                left.leftRotate();
+                //再对当前节点进行右旋转
+                rightRotate();
+            }else {
+                rightRotate();
+            }
+
         }
     }
 
