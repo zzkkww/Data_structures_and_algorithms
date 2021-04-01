@@ -1,4 +1,4 @@
-package serch;
+package serch.binarysearchorecursion;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
