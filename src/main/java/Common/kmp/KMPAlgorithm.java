@@ -13,10 +13,10 @@ public class KMPAlgorithm {
         String str1 = "BBC ABCDAB ABCDABCDABDE";
         String str2 = "ABCDABD";
 
-        int[] next = kmpNext("ABCDABD");
+        int[] next = kmpNext2("ABCDABD");
         System.out.println("next" + Arrays.toString(next));
 
-        int i = kmpSearch(str1, str2, next);
+        int i = kmpSearch2(str1, str2, next);
         System.out.println(i);
     }
 
@@ -73,5 +73,49 @@ public class KMPAlgorithm {
             next[i] = j;
         }
         return next;
+    }
+
+    public static int[] kmpNext2(String dest){
+        //首先创建一个next数组保存部分匹配值
+        int[] next = new int[dest.length()];
+
+        //只有一个字符串的情况下
+        next[0]=0;
+
+        for (int i = 1,j=0; i < dest.length(); i++) {
+            while (j>0&&dest.charAt(i)!=dest.charAt(j)){
+                j=next[j-1];
+            }
+            if (dest.charAt(i)==dest.charAt(j)){
+                j++;
+            }
+            next[i]=j;
+        }
+
+
+        return next;
+    }
+
+    /**
+     *
+     * @param str1
+     * @param str2
+     * @param next
+     * @return
+     */
+    public static int kmpSearch2(String str1, String str2, int[] next) {
+
+        for (int i = 0,j=0; i < str1.length(); i++) {
+            if (j>0&& str1.charAt(i)!=str2.charAt(j)){
+                j=next[j-1];
+            }
+            if (str1.charAt(i)==str2.charAt(j)){
+                j++;
+            }
+            if (j==str2.length()){
+                return i-j+1;
+            }
+        }
+        return -1;
     }
 }
