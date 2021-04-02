@@ -13,10 +13,10 @@ public class KMPAlgorithm {
         String str1 = "BBC ABCDAB ABCDABCDABDE";
         String str2 = "ABCDABD";
 
-        int[] next = kmpNext2("ABCDABD");
+        int[] next = kmpNext4("ABCDABD");
         System.out.println("next" + Arrays.toString(next));
 
-        int i = kmpSearch2(str1, str2, next);
+        int i = kmpSearch3(str1, str2, next);
         System.out.println(i);
     }
 
@@ -33,17 +33,17 @@ public class KMPAlgorithm {
         for (int i = 0, j = 0; i < str1.length(); i++) {
             //需要处理str1.chatAt(i)!=str2.charAt(j),去调整j的大小
             //kmp算法核心点
-            while (j>0&& str1.charAt(i)!=str2.charAt(j)){
+            while (j > 0 && str1.charAt(i) != str2.charAt(j)) {
                 //是kmp算法的公式
-                j=next[j-1];
+                j = next[j - 1];
             }
 
             if (str1.charAt(i) == str2.charAt(j)) {
                 j++;
             }
-            if (j==str2.length()){
+            if (j == str2.length()) {
                 //意味着找到了   这里是相减才能得到匹配上所有字符串的第一个索引值
-                return i-j+1;
+                return i - j + 1;
             }
         }
 
@@ -75,21 +75,21 @@ public class KMPAlgorithm {
         return next;
     }
 
-    public static int[] kmpNext2(String dest){
+    public static int[] kmpNext2(String dest) {
         //首先创建一个next数组保存部分匹配值
         int[] next = new int[dest.length()];
 
         //只有一个字符串的情况下
-        next[0]=0;
+        next[0] = 0;
 
-        for (int i = 1,j=0; i < dest.length(); i++) {
-            while (j>0&&dest.charAt(i)!=dest.charAt(j)){
-                j=next[j-1];
+        for (int i = 1, j = 0; i < dest.length(); i++) {
+            while (j > 0 && dest.charAt(i) != dest.charAt(j)) {
+                j = next[j - 1];
             }
-            if (dest.charAt(i)==dest.charAt(j)){
+            if (dest.charAt(i) == dest.charAt(j)) {
                 j++;
             }
-            next[i]=j;
+            next[i] = j;
         }
 
 
@@ -97,7 +97,6 @@ public class KMPAlgorithm {
     }
 
     /**
-     *
      * @param str1
      * @param str2
      * @param next
@@ -105,17 +104,74 @@ public class KMPAlgorithm {
      */
     public static int kmpSearch2(String str1, String str2, int[] next) {
 
-        for (int i = 0,j=0; i < str1.length(); i++) {
-            if (j>0&& str1.charAt(i)!=str2.charAt(j)){
+        for (int i = 0, j = 0; i < str1.length(); i++) {
+            if (j > 0 && str1.charAt(i) != str2.charAt(j)) {
+                j = next[j - 1];
+            }
+            if (str1.charAt(i) == str2.charAt(j)) {
+                j++;
+            }
+            if (j == str2.length()) {
+                return i - j + 1;
+            }
+        }
+        return -1;
+    }
+
+
+    public static int[] kmpNext3(String dest) {
+        int[] next = new int[dest.length()];
+
+        next[0] = 0;
+
+        for (int i = 1, j = 0; i < dest.length(); i++) {
+            while (j > 0 && dest.charAt(i) != dest.charAt(j)) {
+                j = next[j - 1];
+            }
+            if (dest.charAt(i) == dest.charAt(j)) {
+                j++;
+            }
+            next[i] = j;
+        }
+        return next;
+    }
+
+    public static int[] kmpNext4(String dest) {
+        int[] next = new int[dest.length()];
+
+        next[0] = 0;
+
+        for (int i = 1, j = 0; i < dest.length(); i++) {
+            //这个while循环和if循环的位置不能换
+            while (j > 0 && dest.charAt(i) != dest.charAt(j)) {
+                j = next[j - 1];
+            }
+            if (dest.charAt(i) == dest.charAt(j)) {
+                j++;
+            }
+            next[i] = j;
+        }
+
+        return next;
+    }
+
+    public static int kmpSearch3(String str1, String str2, int[] next) {
+
+        for (int i = 0, j = 0; i < str1.length(); i++) {
+
+            while (j>0&&str1.charAt(i)!=str2.charAt(j)){
                 j=next[j-1];
             }
-            if (str1.charAt(i)==str2.charAt(j)){
+            if (str1.charAt(i) == str2.charAt(j)) {
                 j++;
             }
             if (j==str2.length()){
                 return i-j+1;
             }
         }
+
         return -1;
+
     }
 }
+

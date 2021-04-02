@@ -6,7 +6,6 @@ package Common;
  **/
 public class Hanoittower {
     public static void main(String[] args) {
-
         hanoiTower(2,'A','B','C');
     }
 
