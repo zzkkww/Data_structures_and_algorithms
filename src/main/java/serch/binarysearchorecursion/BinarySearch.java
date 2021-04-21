@@ -16,7 +16,7 @@ public class BinarySearch {
     public static void main(String[] args) {
         int arr[] = {1, 8, 10, 89, 1000, 1234};
 
-        int resIndex = binarySearchDemo2(arr, 0, arr.length - 1, 89);
+        int resIndex = binarySearchDemo3(arr, 0, arr.length - 1, 1);
         System.out.println("resIndex" + resIndex);
 
 //        int arr1[] = {1, 8, 10, 89, 1000, 1000, 1234};
@@ -25,6 +25,35 @@ public class BinarySearch {
 //        Map map=new HashMap();
 //        ConcurrentHashMap<Object, Object> map12 = new ConcurrentHashMap<>();
     }
+
+
+    public static int binarySearchDemo3(int []arr,int left,int right,int findVal){
+        if (left>right){
+            return -1;
+        }
+        int mid=(left+right)/2;
+        int midValue=arr[mid];
+
+        if (midValue>findVal){
+            return binarySearchDemo3(arr,left,mid-1,findVal);
+        }
+        if (midValue<findVal){
+            return binarySearchDemo3(arr,mid+1,right,findVal);
+        }
+        if (midValue==findVal){
+            return mid;
+        }
+
+        return -1;
+    }
+
+
+
+
+
+
+
+
 
 
     public static int binarySearchDemo2(int []arr,int left,int right,int findVal){

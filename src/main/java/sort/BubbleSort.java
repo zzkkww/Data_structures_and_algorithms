@@ -12,6 +12,9 @@ public class BubbleSort {
     public static void main(String[] args) {
         int[] arr = {3, 9, -1, 10, -2,-2,9,100,300};
 
+        int[] sort = bubbleSort(arr);
+        System.out.println(Arrays.toString(sort));
+
         //第一趟排序，就是将最大的数排在最后
         //存放一个临时变量
         int temp;
@@ -88,5 +91,28 @@ public class BubbleSort {
         }
         System.out.println("完整的bubble:");
         System.out.println(Arrays.toString(arr));
+    }
+
+
+    public static int [] bubbleSort(int arr[]){
+        boolean flag=false;
+        int temp;
+        for (int i = 0; i < arr.length-1 ; i++) {
+            for (int j = 0; j < arr.length-1 ; j++) {
+                if (arr[j]>arr[j+1]){
+                    temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                    flag=true;
+                }
+            }
+            if (!flag){
+                break;
+            }else {
+                flag=false;
+            }
+        }
+
+        return arr;
     }
 }
