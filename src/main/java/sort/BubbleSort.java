@@ -10,7 +10,7 @@ import java.util.Arrays;
  **/
 public class BubbleSort {
     public static void main(String[] args) {
-        int[] arr = {3, 9, -1, 10, -2};
+        int[] arr = {3, 9, -1, 10, -2,-2,9,100,300};
 
         //第一趟排序，就是将最大的数排在最后
         //存放一个临时变量
@@ -71,7 +71,7 @@ public class BubbleSort {
          * 完整的bubble就可以了
          */
         for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 0; j < arr.length -1- i; j++) {
+            for (int j = 0; j < arr.length -1; j++) {
                 if (arr[j]>arr[j+1]){
                     temp=arr[j];
                     arr[j]=arr[j+1];

@@ -1,6 +1,9 @@
 package serch.binarysearchorecursion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
@@ -13,13 +16,53 @@ public class BinarySearch {
     public static void main(String[] args) {
         int arr[] = {1, 8, 10, 89, 1000, 1234};
 
-        int resIndex = binarySearch(arr, 0, arr.length - 1, 10);
+        int resIndex = binarySearchDemo2(arr, 0, arr.length - 1, 89);
         System.out.println("resIndex" + resIndex);
 
-        int arr1[] = {1, 8, 10, 89, 1000, 1000, 1234};
-        ArrayList<Integer> list = binarySearch3(arr1, 0, arr1.length - 1, 1000);
-        System.out.println(list);
+//        int arr1[] = {1, 8, 10, 89, 1000, 1000, 1234};
+//        ArrayList<Integer> list = binarySearch3(arr1, 0, arr1.length - 1, 1000);
+//        System.out.println(list);
+//        Map map=new HashMap();
+//        ConcurrentHashMap<Object, Object> map12 = new ConcurrentHashMap<>();
     }
+
+
+    public static int binarySearchDemo2(int []arr,int left,int right,int findVal){
+        if (left>right){
+            return -1;
+        }
+        int mid=(left+right)/2;
+        int midVal=arr[mid];
+
+        if (findVal>midVal){
+            return binarySearchDemo2(arr,mid+1,right,findVal);
+        }
+        if (findVal<midVal){
+            return binarySearchDemo2(arr,left,mid-1,findVal);
+        }
+
+        return mid;
+    }
+
+    public static int binarySearchDemo1(int[] arr,int left,int right,int findVal ){
+        if (left>right){
+            return -1;
+        }
+        int mid=(left+right)/2;
+        int midVal=arr[mid];
+
+
+         //二选一的情况
+        if (findVal>midVal){
+            //就像左找
+            return binarySearchDemo1(arr,mid+1,right,findVal);
+        }
+        if (findVal<midVal){
+            return binarySearchDemo1(arr,left,mid-1,findVal);
+        }
+        return mid;
+    }
+
 
     /**
      * @param arr     数组

@@ -11,8 +11,123 @@ import java.util.Arrays;
 public class QuickSort {
     public static void main(String[] args) {
         int[] arr = {-9, 78, 0, 23, -567, 70};
-        quickSort(arr, 0, arr.length-1);
+        quickSortDemo3(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
+    }
+
+
+    public static void quickSortDemo3(int[] arr, int left, int right) {
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        int temp;
+        while (l < r) {
+            if (arr[l] < pivot) {
+                l++;
+            }
+            if (arr[r] > pivot) {
+                r--;
+            }
+            if (l > r) {
+                break;
+            }
+            temp=arr[l];
+            arr[l]=arr[r];
+            arr[r]=temp;
+            if (arr[l]==pivot){
+                l++;
+            }
+            if (arr[r]==pivot){
+                r--;
+            }
+        }
+        if (l==r){
+            l++;
+            r--;
+        }
+        if (left<r){
+            quickSortDemo3(arr,left,r);
+        }
+        if (right>l){
+            quickSortDemo3(arr,l,right);
+        }
+    }
+
+
+    public static void quickSortDemo2(int[] arr, int left, int right) {
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        int temp;
+        while (l < r) {
+            if (arr[l] < pivot) {
+                l++;
+            }
+            if (arr[r] > pivot) {
+                r--;
+            }
+            if (l > r) {
+                break;
+            }
+            temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            if (arr[l] == pivot) {
+                l++;
+            }
+            if (arr[r] == pivot) {
+                r--;
+            }
+        }
+        if (l == r) {
+            l++;
+            r--;
+        }
+
+        if (left < r) {
+            quickSortDemo2(arr, left, r);
+        }
+        if (right > l) {
+            quickSortDemo2(arr, l, right);
+        }
+    }
+
+    public static void quickSortDemo1(int[] arr, int left, int right) {
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        int temp = 0;
+        while (l < r) {
+            while (arr[l] < pivot) {
+                l++;
+            }
+            while (arr[r] > pivot) {
+                r--;
+            }
+            if (l >= r) {
+                break;
+            }
+            temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            if (arr[l] == pivot) {
+                r--;
+            }
+            if (arr[r] == pivot) {
+                l++;
+            }
+        }
+        //如果l==r，必须l++,r--,否则会出现栈溢出
+        if (l == r) {
+            l++;
+            r--;
+        }
+        if (left < r) {
+            quickSortDemo1(arr, left, r);
+        }
+        if (right > l) {
+            quickSortDemo1(arr, l, right);
+        }
     }
 
     public static void quickSort(int[] arr, int left, int right) {
@@ -30,11 +145,11 @@ public class QuickSort {
         while (l < r) {
             //在pivot的左边一直找，找到一个大于等于pivot,才退出
             while (arr[l] < pivot) {
-                l+=1;
+                l += 1;
             }
             //在pivot的右边一直找，找到一个小于等于pivot,才退出
             while (arr[r] > pivot) {
-                r-=1;
+                r -= 1;
             }
             //如果l>=r说明pivot的左右两的值，已经按照左边全部是
             //小于等于pivot值，右边全部都是大于等于pivot的值
@@ -47,17 +162,17 @@ public class QuickSort {
             arr[r] = temp;
             //如果交换完后，发现这个arr[l]==pivot,前移了一步
             if (arr[l] == pivot) {
-                r-=1;
+                r -= 1;
             }
             //如果交换完后，发现这个arr[r]==pivot,后移了一步
             if (arr[r] == pivot) {
-                l+=1;
+                l += 1;
             }
         }
         //如果l==r，必须l++,r--,否则会出现栈溢出
         if (l == r) {
-            l+=1;
-            r-=1;
+            l += 1;
+            r -= 1;
         }
         //向左递归   为什么不用right呢，因为这样r是在不断的变化的所以
         //不能使用right
@@ -100,8 +215,8 @@ public class QuickSort {
         }
         //如果l==r，必须l++,r--,否则会出现栈溢出
         if (l == r) {
-            l+=1;
-            r-=1;
+            l += 1;
+            r -= 1;
         }
         //向左递归   为什么不用right呢，因为这样r是在不断的变化的所以
         //不能使用right
