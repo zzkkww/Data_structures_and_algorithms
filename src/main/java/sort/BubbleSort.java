@@ -94,6 +94,29 @@ public class BubbleSort {
     }
 
 
+    public static int[] bubbleSort5(int []arr){
+        boolean flag=false;
+        int temp;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - 1; j++) {
+                if (arr[j]>arr[j+1]){
+                    temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                    flag=true;
+                }
+            }
+            if (!flag){
+                break;
+            }else {
+                flag=false;
+            }
+        }
+        return arr;
+    }
+
+
+
     public static int [] bubbleSort(int arr[]){
         boolean flag=false;
         int temp;

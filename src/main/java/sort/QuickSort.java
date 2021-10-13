@@ -11,12 +11,166 @@ import java.util.Arrays;
 public class QuickSort {
     public static void main(String[] args) {
         int[] arr = {-9, 78, 0, 23, -567, 70};
-        quickSortDemo3(arr, 0, arr.length - 1);
+        qucikSortDemo8(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
 
+    public static void qucikSortDemo10(int[] arr, int left, int right) {
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        int temp;
+        while (l < r) {
+            while (arr[l] < pivot) {
+                l++;
+            }
+            while (arr[r] > pivot) {
+                r--;
+            }
+            if (l >= r) {
+                break;
+            }
+            temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            if (arr[l] == pivot) {
+                r--;
+            }
+            if (arr[r] == pivot) {
+                l++;
+            }
+        }
+        if (l == r) {
+            l++;
+            r--;
+        }
+        if (left < r) {
+            qucikSortDemo10(arr, left, r);
+        }
+        if (right > l) {
+            qucikSortDemo10(arr, l, right);
+        }
 
-    public static void quickSortDemo3(int[] arr, int left, int right) {
+    }
+
+    public static void quickSortDemo9(int[] arr, int left, int right) {
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        int temp;
+        while (l < r) {
+            while (arr[l] < pivot) {
+                l++;
+            }
+            while (arr[r] > pivot) {
+                r--;
+            }
+            if (l >= r) {
+                break;
+            }
+            temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            if (arr[l] == pivot) {
+                r--;
+            }
+            if (arr[r] == pivot) {
+                l++;
+            }
+        }
+        if (l == r) {
+            l++;
+            r--;
+        }
+        if (left < r) {
+            qucikSortDemo8(arr, left, r);
+        }
+        if (right > l) {
+            qucikSortDemo8(arr, l, right);
+        }
+    }
+
+    public static void qucikSortDemo8(int[] arr, int left, int right) {
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        int temp;
+
+        while (l < r) {
+            while (arr[l] < pivot) {
+                l++;
+            }
+            while (arr[r] > pivot) {
+                r--;
+            }
+            if (l >= r) {
+                break;
+            }
+            temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            if (arr[l] == pivot) {
+                r--;
+            }
+            if (arr[r] == pivot) {
+                l++;
+            }
+        }
+        if (l == r) {
+            l++;
+            r--;
+        }
+        if (left < r) {
+            qucikSortDemo8(arr, left, r);
+        }
+        if (right > l) {
+            qucikSortDemo8(arr, l, right);
+        }
+
+    }
+
+
+    public static void qucikSortDemo7(int[] arr, int left, int right) {
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        int temp;
+
+        while (l < r) {
+            while (arr[l] < pivot) {
+                l++;
+            }
+            while (arr[r] > pivot) {
+                r--;
+            }
+            if (l >= r) {
+                break;
+            }
+            temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            if (arr[l] < pivot) {
+                r--;
+            }
+            if (arr[r] > pivot) {
+                l++;
+            }
+        }
+        if (l == r) {
+            l++;
+            r--;
+        }
+        if (left < r) {
+            qucikSortDemo7(arr, left, r);
+        }
+        if (right > l) {
+            qucikSortDemo7(arr, l, right);
+        }
+
+
+    }
+
+    public static void quickSortDemo6(int[] arr, int left, int right) {
         int l = left;
         int r = right;
         int pivot = arr[(left + right) / 2];
@@ -28,33 +182,34 @@ public class QuickSort {
             if (arr[r] > pivot) {
                 r--;
             }
-            if (l > r) {
+            if (l >= r) {
                 break;
             }
-            temp=arr[l];
-            arr[l]=arr[r];
-            arr[r]=temp;
-            if (arr[l]==pivot){
-                l++;
-            }
-            if (arr[r]==pivot){
+            temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            if (pivot == arr[l]) {
                 r--;
             }
+            if (pivot == arr[r]) {
+                l++;
+            }
         }
-        if (l==r){
+        if (l == r) {
             l++;
             r--;
         }
-        if (left<r){
-            quickSortDemo3(arr,left,r);
+        if (left < r) {
+            quickSortDemo6(arr, left, r);
         }
-        if (right>l){
-            quickSortDemo3(arr,l,right);
+        if (right > l) {
+            quickSortDemo6(arr, l, right);
         }
+
     }
 
 
-    public static void quickSortDemo2(int[] arr, int left, int right) {
+    public static void quickSortDemo3(int[] arr, int left, int right) {
         int l = left;
         int r = right;
         int pivot = arr[(left + right) / 2];
@@ -77,6 +232,44 @@ public class QuickSort {
             }
             if (arr[r] == pivot) {
                 r--;
+            }
+        }
+        if (l == r) {
+            l++;
+            r--;
+        }
+        if (left < r) {
+            quickSortDemo3(arr, left, r);
+        }
+        if (right > l) {
+            quickSortDemo3(arr, l, right);
+        }
+    }
+
+
+    public static void quickSortDemo2(int[] arr, int left, int right) {
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        int temp;
+        while (l < r) {
+            if (arr[l] < pivot) {
+                l++;
+            }
+            if (arr[r] > pivot) {
+                r--;
+            }
+            if (l >= r) {
+                break;
+            }
+            temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            if (arr[l] == pivot) {
+                r--;
+            }
+            if (arr[r] == pivot) {
+                l++;
             }
         }
         if (l == r) {

@@ -16,7 +16,7 @@ public class BinarySearch {
     public static void main(String[] args) {
         int arr[] = {1, 8, 10, 89, 1000, 1234};
 
-        int resIndex = binarySearchDemo3(arr, 0, arr.length - 1, 1);
+        int resIndex = binarySearchDemo6(arr, 0, arr.length - 1, 1);
         System.out.println("resIndex" + resIndex);
 
 //        int arr1[] = {1, 8, 10, 89, 1000, 1000, 1234};
@@ -26,21 +26,61 @@ public class BinarySearch {
 //        ConcurrentHashMap<Object, Object> map12 = new ConcurrentHashMap<>();
     }
 
-
-    public static int binarySearchDemo3(int []arr,int left,int right,int findVal){
-        if (left>right){
+    public static int binarySearchDemo6(int[] arr, int left, int right, int findVal) {
+        if (left > right) {
             return -1;
         }
-        int mid=(left+right)/2;
-        int midValue=arr[mid];
+        int mid = (left + right) / 2;
+        int midValue = arr[mid];
+        if (findVal > midValue) {
+           return binarySearchDemo6(arr, mid + 1, right, findVal);
+        }
+        else if (findVal < midValue) {
+            return binarySearchDemo6(arr, left, mid - 1, findVal);
+        } else{
+            return mid;
+        }
 
-        if (midValue>findVal){
-            return binarySearchDemo3(arr,left,mid-1,findVal);
+    }
+
+    /*
+      错误的  最上面的那个和第一次写的那个才是正确的
+     */
+    public static int binarySearchDemo5(int[] arr, int left, int right, int findVal) {
+
+        if (left > right) {
+            return -1;
         }
-        if (midValue<findVal){
-            return binarySearchDemo3(arr,mid+1,right,findVal);
+        int mid = (left + right) / 2;
+        int midValue = arr[mid];
+
+        if (midValue > findVal) {
+            binarySearchDemo5(arr, mid + 1, right, findVal);
         }
-        if (midValue==findVal){
+        if (midValue < findVal) {
+            binarySearchDemo5(arr, left, mid - 1, findVal);
+        }
+        if (midValue == findVal) {
+            return mid;
+        }
+        return -1;
+    }
+
+
+    public static int binarySearchDemo3(int[] arr, int left, int right, int findVal) {
+        if (left > right) {
+            return -1;
+        }
+        int mid = (left + right) / 2;
+        int midValue = arr[mid];
+
+        if (midValue > findVal) {
+            return binarySearchDemo3(arr, mid + 1, right, findVal);
+        }
+        if (midValue < findVal) {
+            return binarySearchDemo3(arr, left, mid - 1, findVal);
+        }
+        if (midValue == findVal) {
             return mid;
         }
 
@@ -48,46 +88,38 @@ public class BinarySearch {
     }
 
 
-
-
-
-
-
-
-
-
-    public static int binarySearchDemo2(int []arr,int left,int right,int findVal){
-        if (left>right){
+    public static int binarySearchDemo2(int[] arr, int left, int right, int findVal) {
+        if (left > right) {
             return -1;
         }
-        int mid=(left+right)/2;
-        int midVal=arr[mid];
+        int mid = (left + right) / 2;
+        int midVal = arr[mid];
 
-        if (findVal>midVal){
-            return binarySearchDemo2(arr,mid+1,right,findVal);
+        if (findVal > midVal) {
+            return binarySearchDemo2(arr, mid + 1, right, findVal);
         }
-        if (findVal<midVal){
-            return binarySearchDemo2(arr,left,mid-1,findVal);
+        if (findVal < midVal) {
+            return binarySearchDemo2(arr, left, mid - 1, findVal);
         }
 
         return mid;
     }
 
-    public static int binarySearchDemo1(int[] arr,int left,int right,int findVal ){
-        if (left>right){
+    public static int binarySearchDemo1(int[] arr, int left, int right, int findVal) {
+        if (left > right) {
             return -1;
         }
-        int mid=(left+right)/2;
-        int midVal=arr[mid];
+        int mid = (left + right) / 2;
+        int midVal = arr[mid];
 
 
-         //二选一的情况
-        if (findVal>midVal){
+        //二选一的情况
+        if (findVal > midVal) {
             //就像左找
-            return binarySearchDemo1(arr,mid+1,right,findVal);
+            return binarySearchDemo1(arr, mid + 1, right, findVal);
         }
-        if (findVal<midVal){
-            return binarySearchDemo1(arr,left,mid-1,findVal);
+        if (findVal < midVal) {
+            return binarySearchDemo1(arr, left, mid - 1, findVal);
         }
         return mid;
     }
@@ -180,7 +212,7 @@ public class BinarySearch {
 
         if (findValue > midValue) {
             return binarySearch3(arr, mid + 1, right, findValue);
-        } else if (findValue<midValue) {
+        } else if (findValue < midValue) {
             return binarySearch3(arr, left, mid - 1, findValue);
         } else {
             ArrayList<Integer> list = new ArrayList<>();
