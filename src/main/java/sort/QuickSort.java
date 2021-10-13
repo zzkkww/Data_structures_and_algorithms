@@ -11,9 +11,49 @@ import java.util.Arrays;
 public class QuickSort {
     public static void main(String[] args) {
         int[] arr = {-9, 78, 0, 23, -567, 70};
-        qucikSortDemo8(arr, 0, arr.length - 1);
+        qucikSortDemo10(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
+
+    public static void qucikSortDemo11(int[] arr, int left, int right) {
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        int temp;
+        while (l < r) {
+            while (arr[l] < pivot) {
+                l++;
+            }
+            while (arr[r]>pivot){
+                r--;
+            }
+            if (l>r){
+                break;
+            }
+            temp=arr[l];
+            arr[l]=arr[r];
+            arr[r]=temp;
+            if (arr[l]==pivot){
+                r--;
+            }
+            if (arr[r]==pivot){
+                l++;
+            }
+        }
+        if (l==r){
+            l++;
+            r--;
+        }
+        //因为r一直在减小 也就是r一直往左移 ，所以我们的排序还是要一直往左找
+        if (left<r){
+            qucikSortDemo10(arr,left,r);
+        }
+        //因为l一直在增大 也就是往右找
+        if (right>l){
+            qucikSortDemo10(arr,l,right);
+        }
+    }
+
 
     public static void qucikSortDemo10(int[] arr, int left, int right) {
         int l = left;
