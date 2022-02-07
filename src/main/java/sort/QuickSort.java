@@ -44,6 +44,8 @@ public class QuickSort {
             l++;
             r--;
         }
+
+        //反正最后一定是要往左找和往右找就是对应下面的两个递归
         //因为r一直在减小 也就是r一直往左移 ，所以我们的排序还是要一直往左找
         if (left<r){
             qucikSortDemo10(arr,left,r);
