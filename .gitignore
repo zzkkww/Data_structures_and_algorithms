@@ -35,4 +35,8 @@ build/
 *.patch
 *.tmp
 
-*.class
+
+*.idea
+**/target
+**/classes
+**/generated-sources
