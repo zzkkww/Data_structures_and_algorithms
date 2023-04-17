@@ -11,6 +11,8 @@ public class ArrayStackTest {
         arrayStack.push(2);
         arrayStack.push(3);
         arrayStack.list();
+        arrayStack.pop();
+        arrayStack.list();
     }
 
 }
@@ -56,12 +58,22 @@ class ArrayStack {
         throw new RuntimeException("栈已满");
     }
 
+    public void pop(){
+        if (!isEmpty()){
+            System.out.println("弹栈"+array[top]);
+            this.top--;
+            return;
+        }
+        throw new RuntimeException("栈为空");
+
+    }
+
     public void list() {
         if (isEmpty()) {
             throw new RuntimeException("栈为空");
         }
-        for (int i = 0; i < top + 1; i++) {
-            System.out.println("stack" + array[i]);
+        for (int i = top; i >=0 ; i--) {
+            System.out.println("stack[i]"+array[i]);
         }
     }
 }
