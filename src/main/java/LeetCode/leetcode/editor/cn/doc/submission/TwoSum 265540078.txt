@@ -1,0 +1,17 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        //////////输入：nums = [3,2,4], target = 6  通过值拿索引
+//////////输出：[1,2]
+        Map<Integer,Integer> map=new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target-nums[i])){
+                return new int[] {map.get(target-nums[i]),i};
+            }
+            map.put(nums[i], i);
+        }
+        return null;
+    }
+}
+
+//runtime:2 ms
+//memory:41.6 MB

@@ -51,6 +51,7 @@ package LeetCode.leetcode.editor.cn;
 ////
 //
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +61,9 @@ class twoSum{
     //编号：[1]
     
     public static void main(String[] args) {
+        int nums[]={3,2,4};
         Solution solution = new twoSum().new Solution();
+        System.out.println(Arrays.toString(solution.twoSum(nums, 6)));
         // TO TEST
     }
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -77,6 +80,22 @@ class Solution {
         }
         return null;
     }
+
+
+        public int[] twoSum2(int[] nums, int target) {
+            //////////输入：nums = [3,2,4], target = 6  通过值拿索引
+//////////输出：[1,2]
+            HashMap<Integer, Integer> map = new HashMap<>();
+            for (int i = 0; i < nums.length; i++) {
+                if (map.containsKey(target-nums[i])){
+
+                    return new int[]{map.get(target-nums[i])};
+                }
+                map.put(nums[i], i);
+            }
+            return null;
+        }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
