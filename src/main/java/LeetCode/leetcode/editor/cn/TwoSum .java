@@ -68,33 +68,46 @@ class twoSum{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        //////////输入：nums = [3,2,4], target = 6  通过值拿索引
-//////////输出：[1,2]
-        Map<Integer,Integer> map=new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(target-nums[i])){
-                return new int[] {map.get(target-nums[i]),i};
-            }
-            map.put(nums[i], i);
-        }
-        return null;
-    }
-
-
-        public int[] twoSum2(int[] nums, int target) {
-            //////////输入：nums = [3,2,4], target = 6  通过值拿索引
-//////////输出：[1,2]
-            HashMap<Integer, Integer> map = new HashMap<>();
+        public int[] twoSum(int[] nums, int target) {
+            HashMap<Integer, Integer> map = new HashMap<>(nums.length);
             for (int i = 0; i < nums.length; i++) {
-                if (map.containsKey(target-nums[i])){
-
-                    return new int[]{map.get(target-nums[i])};
+                if(map.containsKey(target-nums[i])){
+                    return new int[]{map.get(target-nums[i]),i};
                 }
-                map.put(nums[i], i);
+                map.put(nums[i],i);
             }
             return null;
         }
+
+
+
+//    public int[] twoSum(int[] nums, int target) {
+//        //////////输入：nums = [3,2,4], target = 6  通过值拿索引
+////////////输出：[1,2]
+//        Map<Integer,Integer> map=new HashMap<>();
+//        for (int i = 0; i < nums.length; i++) {
+//            if (map.containsKey(target-nums[i])){
+//                return new int[] {map.get(target-nums[i]),i};
+//            }
+//            map.put(nums[i], i);
+//        }
+//        return null;
+//    }
+
+
+//        public int[] twoSum2(int[] nums, int target) {
+//            //////////输入：nums = [3,2,4], target = 6  通过值拿索引
+////////////输出：[1,2]
+//            HashMap<Integer, Integer> map = new HashMap<>();
+//            for (int i = 0; i < nums.length; i++) {
+//                if (map.containsKey(target-nums[i])){
+//
+//                    return new int[]{map.get(target-nums[i])};
+//                }
+//                map.put(nums[i], i);
+//            }
+//            return null;
+//        }
 
 }
 //leetcode submit region end(Prohibit modification and deletion)
